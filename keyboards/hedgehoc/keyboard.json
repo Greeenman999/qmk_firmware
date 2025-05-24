@@ -46,7 +46,8 @@
     "split": {
         "enabled": true,
         "serial": {
-            "pin": "B3"
+            "pin": "GP20",
+            "driver": "vendor"
         },
         "transport": {
             "protocol": "serial",
@@ -66,8 +67,8 @@
         }
     },
     "matrix_pins": {
-        "cols": ["D7", "C6", "D4", "D0", "D1", "F6", "F7", "B1"],
-        "rows": ["E6", "B4", "B5", "F5"]
+        "cols": ["GP6", "GP5", "GP4", "GP3", "GP2", "GP27", "GP26", "GP22"],
+        "rows": ["GP7", "GP8", "GP9", "GP28"]
     },
     "url": "",
     "usb": {
