@@ -43,6 +43,28 @@
             { "matrix": [3, 2], "x": 224, "y": 64, "flags": 4 }
         ]
     },
+    "split": {
+        "enabled": true,
+        "serial": {
+            "pin": "B3"
+        },
+        "transport": {
+            "protocol": "serial",
+            "sync": {
+                "activity": true,
+                "detected_os": true,
+                "layer_state": true,
+                "indicators": true,
+                "matrix_state": true,
+                "modifiers": true,
+                "oled": true,
+                "wpm": true
+            }
+        },
+        "usb_detect": {
+            "enabled": true
+        }
+    },
     "matrix_pins": {
         "cols": ["D7", "C6", "D4", "D0", "D1", "F6", "F7", "B1"],
         "rows": ["E6", "B4", "B5", "F5"]
