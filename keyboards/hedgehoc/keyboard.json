@@ -11,7 +11,8 @@
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true
+        "nkro": true,
+        "rgb_matrix": true
     },
     "bootmagic": {
         "enabled": true,
@@ -19,6 +20,7 @@
     },
     "rgb_matrix": {
         "driver": "ws2812",
+        "split_count": [18, 18],
         "layout": [
             { "matrix": [0, 0], "x": 0, "y": 35, "flags": 4 },
             { "matrix": [0, 1], "x": 56, "y": 5, "flags": 4 },
@@ -49,6 +51,9 @@
             "pin": "GP20",
             "driver": "vendor"
         },
+        "bootmagic": {
+            "matrix": [4, 0]
+        },
         "transport": {
             "protocol": "serial",
             "sync": {
@@ -67,7 +72,8 @@
         }
     },
     "ws2812": {
-        "pin": "GP29"
+        "pin": "GP29",
+        "driver": "vendor"
     },
     "matrix_pins": {
         "cols": ["GP6", "GP5", "GP4", "GP3", "GP2", "GP27", "GP26", "GP22"],
