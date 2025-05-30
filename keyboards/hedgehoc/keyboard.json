@@ -66,6 +66,9 @@
             "enabled": true
         }
     },
+    "ws2812": {
+        "pin": "GP29"
+    },
     "matrix_pins": {
         "cols": ["GP6", "GP5", "GP4", "GP3", "GP2", "GP27", "GP26", "GP22"],
         "rows": ["GP7", "GP8", "GP9", "GP28"]
