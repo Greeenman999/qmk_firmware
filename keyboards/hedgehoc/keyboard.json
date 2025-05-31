@@ -14,6 +14,9 @@
         "nkro": true,
         "rgb_matrix": true
     },
+    "tapping": {
+        "term": 500
+    },
     "bootmagic": {
         "enabled": true,
         "matrix": [0, 0]
