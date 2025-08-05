@@ -9,6 +9,14 @@ void keyboard_pre_init_user(void) {
     gpio_write_pin_high(24);
 }
 
+enum layers {
+    _DEFAULT,
+    _NUMBERS,
+    _SYMBOLS,
+    _RGB
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
       * ┌───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┐
@@ -30,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Z,           KC_X,           KC_C,           KC_D,           KC_V,                               KC_K,    KC_H,          KC_COMM,        KC_DOT,         KC_SLSH,
                                                                     KC_ESC, KC_SPC, MO(1),              MO(2),  KC_ENT,  KC_BSPC
     ),
-    [1] = LAYOUT_split_3x5_3(
+    [_NUMBERS] = LAYOUT_split_3x5_3(
       /*
        * ┌───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┐
        * │Tab│ 1 │ 2 │ 3 │ 4 │       │ 5 │ 6 │ 7 │ 8 │ 9 │
@@ -50,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                      KC_LGUI, _______, KC_SPC,           KC_ENT, MO(3), KC_RALT
   ),
-  [2] = LAYOUT_split_3x5_3(
+  [_SYMBOLS] = LAYOUT_split_3x5_3(
       /*
        * ┌───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┐
        * │Tab│ ! │ @ │ # │ $ │       │ % │ ^ │ & │ * │ ( │
@@ -70,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
                                      KC_LGUI, MO(3), KC_SPC,            KC_ENT, _______, KC_RALT
   ),
-  [3] = LAYOUT_split_3x5_3(
+  [_RGB] = LAYOUT_split_3x5_3(
       /*
        * ┌────┬────┬────┬────┬────┐       ┌────┬────┬────┬────┬────┐
        * │BOOT│XXX │XXX │XXX │XXX │       │XXX │XXX │XXX │XXX │XXX │
