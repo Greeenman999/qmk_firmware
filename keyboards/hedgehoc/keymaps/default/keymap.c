@@ -16,6 +16,28 @@ enum layers {
     _RGB
 };
 
+const uint16_t PROGMEM altgr[] = {MO(_NUMBERS), MO(_SYMBOLS), COMBO_END};
+
+const uint16_t PROGMEM l_bracket_combo[] = {KC_W, LALT_T(KC_R), COMBO_END};
+const uint16_t PROGMEM l_paren_combo[] = {KC_F, LCTL_T(KC_S), COMBO_END};
+const uint16_t PROGMEM l_brace_combo[] = {KC_P, LSFT_T(KC_T), COMBO_END};
+const uint16_t PROGMEM l_abk_combo[] = {KC_B, KC_G, COMBO_END};
+const uint16_t PROGMEM r_bracket_combo[] = {KC_Y, LALT_T(KC_I), COMBO_END};
+const uint16_t PROGMEM r_paren_combo[] = {KC_U, LCTL_T(KC_E), COMBO_END};
+const uint16_t PROGMEM r_brace_combo[] = {KC_L, LSFT_T(KC_N), COMBO_END};
+const uint16_t PROGMEM r_abk_combo[] = {KC_J, KC_M, COMBO_END};
+
+combo_t key_combos[] = {
+    COMBO(altgr, KC_RIGHT_ALT),
+    COMBO(l_bracket_combo, KC_LBRC),
+    COMBO(l_paren_combo, KC_LPRN),
+    COMBO(l_brace_combo, KC_LCBR),
+    COMBO(l_abk_combo, KC_LABK),
+    COMBO(r_bracket_combo, KC_RBRC),
+    COMBO(r_paren_combo, KC_RPRN),
+    COMBO(r_brace_combo, KC_RCBR),
+    COMBO(r_abk_combo, KC_RABK),
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
