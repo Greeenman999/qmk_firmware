@@ -93,6 +93,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 #ifdef OLED_ENABLE
+// NOTE: Most of the OLED code was originally written by Soundmonster for the Corne,
+// and has been copied directly from `crkbd/soundmonster/keymap.c`
+
+oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
+    return OLED_ROTATION_270;
+}
+
 bool oled_task_user(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
@@ -123,4 +130,5 @@ bool oled_task_user(void) {
 
     return false;
 }
+
 #endif
