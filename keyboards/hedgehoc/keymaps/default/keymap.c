@@ -28,7 +28,7 @@ const uint16_t PROGMEM r_paren_combo[] = {KC_U, LCTL_T(KC_E), COMBO_END};
 const uint16_t PROGMEM r_brace_combo[] = {KC_L, LSFT_T(KC_N), COMBO_END};
 const uint16_t PROGMEM r_abk_combo[] = {KC_J, KC_M, COMBO_END};
 
-const uint16_t PROGMEM tab_combo[] = {KC_T, KC_G, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {LSFT_T(KC_T), KC_G, COMBO_END};
 const uint16_t PROGMEM qwerty_combo[] = {KC_D, KC_V, COMBO_END};
 
 const uint16_t PROGMEM numbers_combo[] = {KC_SPC, KC_LSFT, COMBO_END};
