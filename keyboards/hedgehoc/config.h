@@ -4,3 +4,11 @@
 #define I2C1_SDA_PIN GP0
 
 #define OLED_DISPLAY_32X128
+
+#define MASTER_LEFT
+
+#ifdef OLED_ENABLE
+#   define OLED_FONT_H "keyboards/hedgehoc/glcdfont.c"
+#endif
+
+#define COMBO_SHOULD_TRIGGER
