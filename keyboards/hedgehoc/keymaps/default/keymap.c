@@ -34,6 +34,9 @@ const uint16_t PROGMEM qwerty_combo[] = {KC_D, KC_V, COMBO_END};
 const uint16_t PROGMEM numbers_combo[] = {KC_SPC, KC_LSFT, COMBO_END};
 const uint16_t PROGMEM symbols_combo[] = {KC_LCTL, KC_SPC, COMBO_END};
 
+const uint16_t PROGMEM f11_combo[] = {KC_F4, KC_F9, COMBO_END};
+const uint16_t PROGMEM f12_combo[] = {KC_F5, KC_F10, COMBO_END};
+
 combo_t key_combos[] = {
     COMBO(altgr, KC_RIGHT_ALT),
     COMBO(l_bracket_combo, KC_LBRC),
@@ -48,6 +51,8 @@ combo_t key_combos[] = {
     COMBO(qwerty_combo, DF(_QWERTY)),
     COMBO(numbers_combo, MO(_NUMBERS)),
     COMBO(symbols_combo, MO(_SYMBOLS)),
+    COMBO(f11_combo, KC_F11),
+    COMBO(f12_combo, KC_F12),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -84,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    if (get_highest_layer(default_layer_state) == _QWERTY && combo_index != 11 && combo_index != 12) {
+    if (get_highest_layer(default_layer_state) == _QWERTY && combo_index != 11 && combo_index != 12 && combo_index != 13 && combo_index != 14) {
         return false;
     }
 
