@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    if (layer_state_is(_QWERTY) && combo_index != 11) {
+    if (get_highest_layer(default_layer_state) == _QWERTY && combo_index != 11) {
         return false;
     }
 
@@ -103,19 +103,23 @@ bool oled_task_user(void) {
 
     switch (get_highest_layer(layer_state)) {
         case 0:
-            oled_write_P(PSTR("Default\n"), false);
+            if (get_highest_layer(default_layer_state) == _DEFAULT) {
+                oled_write_P(PSTR("Default\n"), false);
+            } else {
+                oled_write_P(PSTR("Qwerty\n"), false);
+            }
             break;
         case 1:
-            oled_write_P(PSTR("Number\n"), false);
+            oled_write_P(PSTR("Qwerty\n"), false);
             break;
         case 2:
-            oled_write_P(PSTR("Symbols\n"), false);
+            oled_write_P(PSTR("Number\n"), false);
             break;
         case 3:
-            oled_write_P(PSTR("RGB\n"), false);
+            oled_write_P(PSTR("Symbols\n"), false);
             break;
         case 4:
-            oled_write_P(PSTR("Qwerty\n"), false);
+            oled_write_P(PSTR("RGB\n"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
