@@ -15,7 +15,7 @@
         "rgb_matrix": true
     },
     "tapping": {
-        "term": 500
+        "term": 300
     },
     "bootmagic": {
         "enabled": true,
@@ -25,7 +25,9 @@
         "driver": "ws2812",
         "split_count": [18, 18],
         "default": {
-            "animation": "band_sat"
+            "animation": "cycle_left_right",
+            "val": 150,
+            "speed": 48
         },
         "animations": {
             "solid_color": true,
@@ -140,9 +142,6 @@
                 "oled": true,
                 "wpm": true
             }
-        },
-        "usb_detect": {
-            "enabled": true
         }
     },
     "ws2812": {
