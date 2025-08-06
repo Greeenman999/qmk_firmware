@@ -11,6 +11,7 @@ void keyboard_pre_init_user(void) {
 
 enum layers {
     _DEFAULT,
+    _QWERTY,
     _NUMBERS,
     _SYMBOLS,
     _RGB
@@ -27,6 +28,11 @@ const uint16_t PROGMEM r_paren_combo[] = {KC_U, LCTL_T(KC_E), COMBO_END};
 const uint16_t PROGMEM r_brace_combo[] = {KC_L, LSFT_T(KC_N), COMBO_END};
 const uint16_t PROGMEM r_abk_combo[] = {KC_J, KC_M, COMBO_END};
 
+const uint16_t PROGMEM tab_combo[] = {KC_T, KC_G, COMBO_END};
+const uint16_t PROGMEM qwerty_combo[] = {KC_D, KC_V, COMBO_END};
+
+const uint16_t PROGMEM numbers_combo[] = {KC_SPC, KC_LSFT, COMBO_END};
+
 combo_t key_combos[] = {
     COMBO(altgr, KC_RIGHT_ALT),
     COMBO(l_bracket_combo, KC_LBRC),
@@ -37,90 +43,51 @@ combo_t key_combos[] = {
     COMBO(r_paren_combo, KC_RPRN),
     COMBO(r_brace_combo, KC_RCBR),
     COMBO(r_abk_combo, KC_RABK),
+    COMBO(tab_combo, KC_TAB),
+    COMBO(qwerty_combo, DF(_QWERTY)),
+    COMBO(numbers_combo, MO(_NUMBERS)),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-     /*
-      * ┌───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┐
-      * │ Q │ W │ F │ P │ B │       │ J │ L │ U │ Y │ ; │
-      * ├───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┤
-      * │ A │ R │ S │ T │ G │       │ M │ N │ E │ I │ O │
-      * ├───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┤
-      * │ Z │ X │ C │ D │ V │       │ K │ H │ , │ . │ / │
-      * └───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┘
-      *           ┌───┐                   ┌───┐
-      *           │GUI├───┐           ┌───┤Alt│
-      *           └───┤Bsp├───┐   ┌───┤Ent├───┘
-      *               └───┤   │   │   ├───┘
-      *                   └───┘   └───┘
-      */
     [_DEFAULT] = LAYOUT_split_3x5_3(
         KC_Q,           KC_W,           KC_F,           KC_P,           KC_B,                               KC_J,    KC_L,          KC_U,           KC_Y,           KC_SCLN,
         LGUI_T(KC_A),   LALT_T(KC_R),   LCTL_T(KC_S),   LSFT_T(KC_T),   KC_G,                               KC_M,    LSFT_T(KC_N),  LCTL_T(KC_E),   LALT_T(KC_I),   LGUI_T(KC_O),
         KC_Z,           KC_X,           KC_C,           KC_D,           KC_V,                               KC_K,    KC_H,          KC_COMM,        KC_DOT,         KC_SLSH,
-                                                                    KC_ESC, KC_SPC, MO(_NUMBERS),              MO(_SYMBOLS),  KC_ENT,  KC_BSPC
+                                                                    KC_ESC, KC_SPC, MO(_NUMBERS),              MO(_SYMBOLS),  KC_LSFT,  KC_BSPC
     ),
     [_NUMBERS] = LAYOUT_split_3x5_3(
-      /*
-       * ┌───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┐
-       * │Tab│ 1 │ 2 │ 3 │ 4 │       │ 5 │ 6 │ 7 │ 8 │ 9 │
-       * ├───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┤
-       * │Ctl│XXX│XXX│XXX│XXX│       │←  │↓  │↑  │→  │XXX│
-       * ├───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┤
-       * │Sft│XXX│XXX│XXX│XXX│       │XXX│XXX│XXX│XXX│XXX│
-       * └───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┘
-       *           ┌───┐                   ┌───┐
-       *           │GUI├───┐           ┌───┤MO3│
-       *           └───┤___├───┐   ┌───┤Spc├───┘
-       *               └───┤Spc│   │Ent├───┘
-       *                   └───┘   └───┘
-       */
-      KC_TAB,   XXXXXXX,    KC_7,   KC_8,   KC_9,                           KC_DOWN,    KC_RIGHT,   XXXXXXX,    XXXXXXX,    XXXXXXX,
-      KC_LCTL,  XXXXXXX,    KC_4,   KC_5,   KC_6,                           XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
-      KC_LSFT,  KC_0,       KC_1,   KC_2,   KC_3,                           KC_UP,      KC_LEFT,    XXXXXXX,    XXXXXXX,    XXXXXXX,
-                                        KC_LGUI, _______, KC_SPC,           KC_ENT, MO(_RGB), KC_RALT
-  ),
-  [_SYMBOLS] = LAYOUT_split_3x5_3(
-      /*
-       * ┌───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┐
-       * │Tab│ ! │ @ │ # │ $ │       │ % │ ^ │ & │ * │ ( │
-       * ├───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┤
-       * │Ctl│XXX│XXX│XXX│XXX│       │ - │ = │ [ │ ] │ \ │
-       * ├───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┤
-       * │Sft│XXX│XXX│XXX│XXX│       │ _ │ + │ { │ } │ | │
-       * └───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┘
-       *           ┌───┐                   ┌───┐
-       *           │GUI├───┐           ┌───┤MO3│
-       *           └───┤MO3├───┐   ┌───┤Spc├───┘
-       *               └───┤Spc│   │Ent├───┘
-       *                   └───┘   └───┘
-       */
-      KC_TAB, KC_EXLM, KC_AT, KC_HASH, KC_DLR,                                 KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,
-      KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-                                     KC_LGUI, MO(3), KC_SPC,            KC_ENT, _______, KC_RALT
-  ),
-  [_RGB] = LAYOUT_split_3x5_3(
-      /*
-       * ┌────┬────┬────┬────┬────┐       ┌────┬────┬────┬────┬────┐
-       * │BOOT│XXX │XXX │XXX │XXX │       │XXX │XXX │XXX │XXX │XXX │
-       * ├────┼────┼────┼────┼────┤       ├────┼────┼────┼────┼────┤
-       * │RGBT│HUE+│SAT+│VAL+│XXX │       │XXX │XXX │XXX │XXX │XXX │
-       * ├────┼────┼────┼────┼────┤       ├────┼────┼────┼────┼────┤
-       * │NEXT│HUE-│SAT-│VAL-│XXX │       │XXX │XXX │XXX │XXX │XXX │
-       * └────┴────┴────┴────┴────┘       └────┴────┴────┴────┴────┘
-       *           ┌───┐                   ┌───┐
-       *           │GUI├───┐           ┌───┤___│
-       *           └───┤___├───┐   ┌───┤Spc├───┘
-       *               └───┤Spc│   │Ent├───┘
-       *                   └───┘   └───┘
-       */
-      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      RM_TOGG, RM_HUEU, RM_SATU, RM_VALU, XXXXXXX,                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      RM_NEXT, RM_HUED, RM_SATD, RM_VALD, XXXXXXX,                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                     KC_LGUI, _______, KC_SPC,            KC_ENT, _______, KC_RALT
-  )
+        KC_TAB,    KC_DEL,    KC_7,    KC_8,    KC_9,                        KC_DOWN,   KC_RIGHT,   KC_MPRV,   KC_MPLY,   KC_MNXT,
+        XXXXXXX,   KC_PSCR,   KC_4,    KC_5,    KC_6,                        KC_HOME,   KC_PGUP,    KC_PGDN,   KC_END,    XXXXXXX,
+        XXXXXXX,   KC_0,      KC_1,    KC_2,    KC_3,                        KC_UP,     KC_LEFT,    XXXXXXX,   XXXXXXX,   XXXXXXX,
+                                         XXXXXXX, MO(_RGB), XXXXXXX,         KC_ENT,    MO(_RGB),   KC_RALT
+    ),
+    [_SYMBOLS] = LAYOUT_split_3x5_3(
+        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                 KC_CIRC, KC_AMPR, KC_ASTR, KC_UNDS, KC_PLUS,
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                   KC_GRV,  KC_DQUO, KC_QUOT, KC_MINS, KC_EQL,
+        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,                  KC_TILD, KC_QUES, KC_COLN, KC_BSLS, KC_PIPE,
+                                   KC_F11,  KC_F12,  KC_RALT,        XXXXXXX, XXXXXXX, XXXXXXX
+    ),
+    [_RGB] = LAYOUT_split_3x5_3(
+        QK_BOOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                        XXXXXXX,   XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX,
+        RM_TOGG,   RM_HUEU,   RM_SATU,   RM_VALU,   XXXXXXX,                        XXXXXXX,   DF(_QWERTY),  XXXXXXX,      XXXXXXX,      XXXXXXX,
+        RM_NEXT,   RM_HUED,   RM_SATD,   RM_VALD,   XXXXXXX,                        XXXXXXX,   XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX,
+                                         XXXXXXX,   XXXXXXX,   XXXXXXX,             XXXXXXX,   XXXXXXX,      XXXXXXX
+    ),
+    [_QWERTY] = LAYOUT_split_3x5_3(
+        KC_T,   KC_Q,   KC_W,   KC_E,   KC_R,                             KC_Y,   KC_U,   KC_I,      KC_O,      KC_P,
+        KC_G,   KC_A,   KC_S,   KC_D,   KC_F,                             KC_H,   KC_J,   KC_K,      KC_L,      KC_TAB,
+        KC_B,   KC_Z,   KC_X,   KC_C,   KC_V,                             KC_N,   KC_M,   XXXXXXX,   XXXXXXX,   KC_ESC,
+                                   KC_LCTL, KC_SPC, KC_LSFT,              MO(_SYMBOLS), MO(_NUMBERS), DF(_DEFAULT)
+    ),
 };
+
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    if (layer_state_is(_QWERTY) && combo_index != 11) {
+        return false;
+    }
+
+    return true;
+}
 
 #ifdef OLED_ENABLE
 // NOTE: Most of the OLED code was originally written by Soundmonster for the Corne,
@@ -146,6 +113,9 @@ bool oled_task_user(void) {
             break;
         case 3:
             oled_write_P(PSTR("RGB\n"), false);
+            break;
+        case 4:
+            oled_write_P(PSTR("Qwerty\n"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
