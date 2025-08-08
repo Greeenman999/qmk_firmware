@@ -6,6 +6,9 @@
 #define OLED_DISPLAY_32X128
 
 #define MASTER_LEFT
+#define SPLIT_USB_TIMEOUT 2000
+#define USB_VBUS_PIN GP19
+
 
 #ifdef OLED_ENABLE
 #   define OLED_FONT_H "keyboards/hedgehoc/glcdfont.c"
